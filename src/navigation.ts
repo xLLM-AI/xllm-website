@@ -4,7 +4,7 @@ export const headerData = {
   links: [
     {
       text: 'Docs',
-      href: 'https://xllm.readthedocs.io/zh-cn/latest/',
+      href: 'https://docs.xllm-ai.com/en/',
       target: '_blank',
     },
     {
@@ -39,7 +39,7 @@ export const footerData = {
   copyright: '© 2026 xLLM. All rights reserved.',
   socialLinks: [
     { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/jd-opensource/xllm' },
-    { ariaLabel: 'Documentation', icon: 'tabler:book-2', href: 'https://xllm.readthedocs.io/zh-cn/latest/' },
+    { ariaLabel: 'Documentation', icon: 'tabler:book-2', href: 'https://docs.xllm-ai.com/en/' },
     { ariaLabel: 'Docker', icon: 'tabler:brand-docker', href: 'https://quay.io/repository/jd_xllm/xllm-ai?tab=tags' },
     { ariaLabel: 'Technical Report', icon: 'tabler:file-text', href: 'https://arxiv.org/abs/2510.14686' },
   ],
