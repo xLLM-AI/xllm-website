@@ -4,11 +4,11 @@ coreTeam:
     bio: xLLM team leader
     remark:
   - username: yq33victor
-    bio: 
-    remark: 
+    bio:
+    remark:
   - username: walsonyang
-    bio: 
-    remark: 
+    bio:
+    remark:
 ---
 
 Core Team data consumed by `src/pages/team.astro`.

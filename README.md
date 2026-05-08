@@ -18,6 +18,7 @@ It is based on the [AstroWind](https://github.com/arthelokyo/astrowind) template
 ## Development
 
 Install npm on macOS:
+
 ```bash
 # install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -31,6 +32,7 @@ npm -v
 ```
 
 Develop website:
+
 ```bash
 git clone https://github.com/xLLM-AI/website.git
 cd website
@@ -47,7 +49,6 @@ Default local address:
 ```text
 http://localhost:4321
 ```
-
 
 ## Developing in VS Code / Cursor
 
