@@ -1,0 +1,46 @@
+import { getPermalink } from './utils/permalinks';
+
+export const headerData = {
+  links: [
+    {
+      text: 'Docs',
+      href: 'https://xllm.readthedocs.io/zh-cn/latest/',
+      target: '_blank',
+    },
+    {
+      text: 'Team',
+      href: getPermalink('/team'),
+    },
+    {
+      text: 'Models',
+      href: getPermalink('/supported-models'),
+    },
+    {
+      text: 'Community',
+      href: getPermalink('/#community'),
+    },
+    {
+      text: 'Resources',
+      href: getPermalink('/#resources'),
+    },
+  ],
+  actions: [
+    {
+      text: 'GitHub',
+      href: 'https://github.com/jd-opensource/xllm',
+      target: '_blank',
+      icon: 'tabler:brand-github',
+      githubRepo: 'jd-opensource/xllm',
+    },
+  ],
+};
+
+export const footerData = {
+  copyright: '© 2026 xLLM. All rights reserved.',
+  socialLinks: [
+    { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/jd-opensource/xllm' },
+    { ariaLabel: 'Documentation', icon: 'tabler:book-2', href: 'https://xllm.readthedocs.io/zh-cn/latest/' },
+    { ariaLabel: 'Docker', icon: 'tabler:brand-docker', href: 'https://quay.io/repository/jd_xllm/xllm-ai?tab=tags' },
+    { ariaLabel: 'Technical Report', icon: 'tabler:file-text', href: 'https://arxiv.org/abs/2510.14686' },
+  ],
+};
