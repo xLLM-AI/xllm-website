@@ -1,0 +1,61 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { frontmatter as publicationsData } from '~/data/publications.md';
+
+const metadata = {
+  title: 'Publications',
+};
+
+type Publication = {
+  title: string;
+  link: string;
+  authors: string;
+  conference: string;
+};
+
+const publications = [...(publicationsData.publications as Publication[])].reverse();
+---
+
+<Layout metadata={metadata}>
+  <section class="not-prose">
+    <div class="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16">
+      <h1 class="sr-only">Publications</h1>
+
+      <div class="mx-auto max-w-5xl">
+        <ol class="space-y-2">
+          {
+            publications.map((publication) => (
+              <li class="group relative overflow-hidden rounded-2xl border border-transparent bg-white/75 px-3 py-2 dark:bg-slate-900/50">
+                <div
+                  class="pointer-events-none absolute inset-0 z-0 rounded-2xl opacity-0 shadow-[inset_0_0_0_9999px_rgba(220,38,38,0.03)] transition-opacity duration-300 ease-out will-change-[opacity] group-hover:opacity-100 group-hover:duration-200 group-focus-within:opacity-100 dark:shadow-[inset_0_0_0_9999px_rgba(220,38,38,0.2)]"
+                  aria-hidden="true"
+                />
+                <div class="relative z-10 flex flex-col gap-2 md:flex-row md:items-start">
+                  <div class="shrink-0">
+                    <span class="inline-flex rounded-md bg-[rgba(220,38,38,0.08)] px-2.5 py-1 text-sm font-semibold text-[rgb(185,28,28)] dark:bg-[rgba(248,113,113,0.12)] dark:text-[rgb(248,113,113)]">
+                      [{publication.conference}]
+                    </span>
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <h2 class="text-lg font-semibold leading-7 text-heading dark:text-white">{publication.title}</h2>
+                      <a
+                        href={publication.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center rounded-md border border-transparent px-2.5 py-1 text-sm font-medium text-[rgb(185,28,28)] transition-colors hover:border-[rgba(220,38,38,0.45)] hover:bg-[rgba(220,38,38,0.06)] focus-visible:border-[rgba(220,38,38,0.45)] focus-visible:bg-[rgba(220,38,38,0.06)] dark:text-[rgb(248,113,113)] dark:hover:border-[rgba(248,113,113,0.55)] dark:hover:bg-[rgba(248,113,113,0.08)] dark:focus-visible:border-[rgba(248,113,113,0.55)] dark:focus-visible:bg-[rgba(248,113,113,0.08)]"
+                      >
+                        [paper]
+                      </a>
+                    </div>
+                    <p class="mt-1 text-sm leading-6 text-slate-700 dark:text-slate-300">{publication.authors}.</p>
+                  </div>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+</Layout>
