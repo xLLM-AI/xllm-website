@@ -16,12 +16,12 @@ export const headerData = {
       href: getPermalink('/supported-models'),
     },
     {
-      text: 'Community',
-      href: getPermalink('/#community'),
+      text: 'Publications',
+      href: getPermalink('/publications'),
     },
     {
-      text: 'Resources',
-      href: getPermalink('/#resources'),
+      text: 'Community',
+      href: getPermalink('/#community'),
     },
   ],
   actions: [
