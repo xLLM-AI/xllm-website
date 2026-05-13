@@ -1,7 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
+import Header from '~/components/widgets/Header.astro';
 import Button from '~/components/ui/Button.astro';
+import { headerData } from '~/navigation';
 
 const metadata = {
   title: 'xLLM',
@@ -10,21 +12,25 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="relative md:-mt-[76px] not-prose">
+  <Fragment slot="header">
+    <Header {...headerData} showToggleTheme />
+  </Fragment>
+
+  <section class="relative -mt-[76px] 2xl:-mt-[85px] not-prose">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(220,38,38,0.16),transparent_50%),radial-gradient(circle_at_80%_22%,rgba(220,38,38,0.16),transparent_52%),linear-gradient(to_bottom,#fff,rgba(248,250,252,0.92))] dark:bg-[radial-gradient(circle_at_top,rgba(220,38,38,0.18),transparent_50%),radial-gradient(circle_at_80%_22%,rgba(220,38,38,0.18),transparent_52%),linear-gradient(to_bottom,#020617,#0f172a)]"
+        class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(235,39,0,0.16),transparent_50%),radial-gradient(circle_at_80%_22%,rgba(235,39,0,0.16),transparent_52%),linear-gradient(to_bottom,rgba(235,39,0,0.08),rgba(248,250,252,0.92))] dark:bg-[radial-gradient(circle_at_top,rgba(235,39,0,0.18),transparent_50%),radial-gradient(circle_at_80%_22%,rgba(235,39,0,0.18),transparent_52%),linear-gradient(to_bottom,#080808,#080808)]"
       >
       </div>
     </div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
-      <div class="pointer-events-none pt-0 md:pt-[76px]"></div>
-      <div class="py-12 md:py-16">
+      <div class="pointer-events-none pt-[76px] 2xl:pt-[85px]"></div>
+      <div class="py-16 md:py-24 lg:py-28">
         <div class="mx-auto max-w-4xl text-center">
           <img src="/images/logo.png" alt="xLLM logo" class="mx-auto h-28 w-auto" />
           <h1 class="mt-3 text-3xl font-bold leading-tight tracking-tight text-heading md:text-3xl dark:text-white">
-            The <span class="font-extrabold text-[#e60000]">High-Performance</span> Inference Framework for
-            <span class="font-extrabold text-[#e60000]">LLM, VLM, DiT and REC</span> Models on Heterogeneous Accelerators
+            The <span class="font-extrabold text-[#EB2700]">High-Performance</span> Inference Framework for
+            <span class="font-extrabold text-[#EB2700]">LLM, VLM, DiT and REC</span> Models on Heterogeneous Accelerators
           </h1>
           <div class="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button
@@ -33,17 +39,17 @@ const metadata = {
               href="https://docs.xllm-ai.com/en/getting_started/quick_start/"
               target="_blank"
               icon="tabler:book-2"
-              class="border-[#c84a16] bg-[#c84a16] text-white hover:border-[#a93a0f] hover:bg-[#a93a0f] dark:border-[#c84a16] dark:bg-[#c84a16] dark:hover:border-[#a93a0f] dark:hover:bg-[#a93a0f]"
+              class="border-[#EB2700] bg-[#EB2700] text-white hover:border-[#EB2700] hover:bg-[#EB2700] dark:border-[#EB2700] dark:bg-[#EB2700] dark:hover:border-[#EB2700] dark:hover:bg-[#EB2700]"
             />
           </div>
         </div>
 
         <div class="mx-auto mt-12 grid max-w-6xl gap-4 md:grid-cols-3">
           <div
-            class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
+            class="rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
           >
             <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:circle-check" class="h-5 w-5 text-[rgba(220,38,38,0.75)]" />
+              <Icon name="tabler:circle-check" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
               Easy
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
@@ -52,10 +58,10 @@ const metadata = {
             </p>
           </div>
           <div
-            class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
+            class="rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
           >
             <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:bolt" class="h-5 w-5 text-[rgba(220,38,38,0.75)]" />
+              <Icon name="tabler:bolt" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
               Fast
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
@@ -64,10 +70,10 @@ const metadata = {
             </p>
           </div>
           <div
-            class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
+            class="rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
           >
             <h2 class="flex items-center gap-2 text-xl font-semibold text-heading dark:text-white">
-              <Icon name="tabler:coins" class="h-5 w-5 text-[rgba(220,38,38,0.75)]" />
+              <Icon name="tabler:coins" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
               Cost Efficient
             </h2>
             <p class="mt-3 text-sm text-muted md:text-base">
@@ -83,7 +89,7 @@ const metadata = {
   <section id="community" class="not-prose">
     <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12 lg:py-16">
       <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wide text-[rgba(220,38,38,0.75)]">Got Questions?</p>
+        <p class="text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]">Got Questions?</p>
         <h2 class="mt-3 text-2xl font-bold tracking-tight text-heading md:text-3xl dark:text-white">
           We are here to help
         </h2>
@@ -101,7 +107,7 @@ const metadata = {
           class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:book-2" class="h-5 w-5 text-[rgba(220,38,38,0.75)]" />
+            <Icon name="tabler:book-2" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
             Documentation
           </h3>
           <p class="mt-3 text-sm text-muted md:text-base">
@@ -115,7 +121,7 @@ const metadata = {
           class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:message-circle" class="h-5 w-5 text-[rgba(220,38,38,0.75)]" />
+            <Icon name="tabler:message-circle" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
             GitHub Issues
           </h3>
           <p class="mt-3 text-sm text-muted md:text-base">
@@ -129,7 +135,7 @@ const metadata = {
           class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:users" class="h-5 w-5 text-[rgba(220,38,38,0.75)]" />
+            <Icon name="tabler:users" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
             Contributors
           </h3>
           <p class="mt-3 text-sm text-muted md:text-base">
@@ -143,7 +149,7 @@ const metadata = {
   <section id="resources" class="not-prose">
     <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12 lg:py-16">
       <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wide text-[rgba(220,38,38,0.75)]">Resources</p>
+        <p class="text-sm font-semibold uppercase tracking-wide text-[rgba(235,39,0,0.75)]">Resources</p>
         <h2 class="mt-3 text-2xl font-bold tracking-tight text-heading md:text-3xl dark:text-white">
           Explore docs, paper, and releases
         </h2>
@@ -158,7 +164,7 @@ const metadata = {
           class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:book-2" class="h-5 w-5 text-[rgba(220,38,38,0.75)]" />
+            <Icon name="tabler:book-2" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
             Documentation
           </h3>
           <p class="mt-3 text-sm text-muted md:text-base">Guides, setup instructions, and feature docs.</p>
@@ -168,7 +174,7 @@ const metadata = {
           class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:file-text" class="h-5 w-5 text-[rgba(220,38,38,0.75)]" />
+            <Icon name="tabler:file-text" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
             Publications
           </h3>
           <p class="mt-3 text-sm text-muted md:text-base">Read xLLM papers, reports, and supporting artifacts.</p>
@@ -180,7 +186,7 @@ const metadata = {
           class="card-hover rounded-3xl border border-slate-200/80 bg-white/75 p-6 hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900/50 dark:hover:border-slate-600"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold text-heading dark:text-white">
-            <Icon name="tabler:brand-docker" class="h-5 w-5 text-[rgba(220,38,38,0.75)]" />
+            <Icon name="tabler:brand-docker" class="h-5 w-5 text-[rgba(235,39,0,0.75)]" />
             Docker
           </h3>
           <p class="mt-3 text-sm text-muted md:text-base">

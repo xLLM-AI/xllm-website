@@ -27,12 +27,12 @@ const publications = [...(publicationsData.publications as Publication[])].rever
             publications.map((publication) => (
               <li class="group relative overflow-hidden rounded-2xl border border-transparent bg-white/75 px-3 py-2 dark:bg-slate-900/50">
                 <div
-                  class="pointer-events-none absolute inset-0 z-0 rounded-2xl opacity-0 shadow-[inset_0_0_0_9999px_rgba(220,38,38,0.03)] transition-opacity duration-300 ease-out will-change-[opacity] group-hover:opacity-100 group-hover:duration-200 group-focus-within:opacity-100 dark:shadow-[inset_0_0_0_9999px_rgba(220,38,38,0.2)]"
+                  class="pointer-events-none absolute inset-0 z-0 rounded-2xl opacity-0 shadow-[inset_0_0_0_9999px_rgba(235,39,0,0.03)] transition-opacity duration-300 ease-out will-change-[opacity] group-hover:opacity-100 group-hover:duration-200 group-focus-within:opacity-100 dark:shadow-[inset_0_0_0_9999px_rgba(235,39,0,0.2)]"
                   aria-hidden="true"
                 />
                 <div class="relative z-10 flex flex-col gap-2 md:flex-row md:items-start">
                   <div class="shrink-0">
-                    <span class="inline-flex rounded-md bg-[rgba(220,38,38,0.08)] px-2.5 py-1 text-sm font-semibold text-[rgb(185,28,28)] dark:bg-[rgba(248,113,113,0.12)] dark:text-[rgb(248,113,113)]">
+                    <span class="inline-flex rounded-md bg-[rgba(235,39,0,0.08)] px-2.5 py-1 text-sm font-semibold text-[#EB2700] dark:bg-[rgba(235,39,0,0.12)] dark:text-[#EB2700]">
                       [{publication.conference}]
                     </span>
                   </div>
@@ -43,7 +43,7 @@ const publications = [...(publicationsData.publications as Publication[])].rever
                         href={publication.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center rounded-md border border-transparent px-2.5 py-1 text-sm font-medium text-[rgb(185,28,28)] transition-colors hover:border-[rgba(220,38,38,0.45)] hover:bg-[rgba(220,38,38,0.06)] focus-visible:border-[rgba(220,38,38,0.45)] focus-visible:bg-[rgba(220,38,38,0.06)] dark:text-[rgb(248,113,113)] dark:hover:border-[rgba(248,113,113,0.55)] dark:hover:bg-[rgba(248,113,113,0.08)] dark:focus-visible:border-[rgba(248,113,113,0.55)] dark:focus-visible:bg-[rgba(248,113,113,0.08)]"
+                        class="inline-flex items-center rounded-md border border-transparent px-2.5 py-1 text-sm font-medium text-[#EB2700] transition-colors hover:border-[rgba(235,39,0,0.45)] hover:bg-[rgba(235,39,0,0.06)] focus-visible:border-[rgba(235,39,0,0.45)] focus-visible:bg-[rgba(235,39,0,0.06)] dark:text-[#EB2700] dark:hover:border-[rgba(235,39,0,0.55)] dark:hover:bg-[rgba(235,39,0,0.08)] dark:focus-visible:border-[rgba(235,39,0,0.55)] dark:focus-visible:bg-[rgba(235,39,0,0.08)]"
                       >
                         [paper]
                       </a>
