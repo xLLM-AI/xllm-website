@@ -29,6 +29,9 @@ const { language, textDirection } = I18N;
 <html lang={language} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <CommonMeta />
+    <script is:inline data-astro-rerun>
+      document.documentElement.classList.add('js-enabled');
+    </script>
     <Favicons />
     <CustomStyles />
     <ApplyColorMode />
