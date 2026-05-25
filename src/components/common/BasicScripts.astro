@@ -143,6 +143,7 @@ import { UI } from 'astrowind:config';
     });
   };
   const onPageShow = function () {
+    document.documentElement.classList.add('js-enabled');
     document.documentElement.classList.add('motion-safe:scroll-smooth');
     const elem = document.querySelector('[data-aw-toggle-menu]');
     if (elem) {
@@ -266,9 +267,52 @@ import { UI } from 'astrowind:config';
     },
   };
 
+  const PageMotion = {
+    observer: null,
+
+    start() {
+      document.documentElement.classList.add('js-enabled');
+      this.observer?.disconnect();
+
+      const elements = Array.from(document.querySelectorAll('.scroll-fade, .scroll-fade-stagger'));
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      elements.forEach((element) => {
+        if (element.classList.contains('scroll-fade-stagger')) {
+          Array.from(element.children).forEach((child, index) => {
+            child.style.setProperty('--scroll-fade-delay', `${Math.min(index, 6) * 90}ms`);
+          });
+        }
+
+        if (prefersReducedMotion) {
+          element.classList.add('is-visible');
+        }
+      });
+
+      if (prefersReducedMotion || !elements.length) {
+        return;
+      }
+
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle('is-visible', entry.isIntersecting);
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -10% 0px' }
+      );
+
+      elements.forEach((element) => {
+        this.observer.observe(element);
+      });
+    },
+  };
+
   Observer.start();
+  PageMotion.start();
 
   document.addEventListener('astro:after-swap', () => {
     Observer.start();
+    PageMotion.start();
   });
 </script>

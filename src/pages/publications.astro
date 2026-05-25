@@ -25,7 +25,7 @@ const publications = [...(publicationsData.publications as Publication[])].rever
         <ol class="space-y-2">
           {
             publications.map((publication) => (
-              <li class="group relative overflow-hidden rounded-2xl border border-transparent bg-white/75 px-3 py-2 dark:bg-slate-900/50">
+              <li class="scroll-fade group relative overflow-hidden rounded-2xl border border-transparent bg-white/75 px-3 py-2 dark:bg-slate-900/50">
                 <div
                   class="pointer-events-none absolute inset-0 z-0 rounded-2xl opacity-0 shadow-[inset_0_0_0_9999px_rgba(235,39,0,0.03)] transition-opacity duration-300 ease-out will-change-[opacity] group-hover:opacity-100 group-hover:duration-200 group-focus-within:opacity-100 dark:shadow-[inset_0_0_0_9999px_rgba(235,39,0,0.2)]"
                   aria-hidden="true"
