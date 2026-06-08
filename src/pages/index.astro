@@ -136,7 +136,7 @@ const modelSupport = [
 
       <div class="scroll-fade-stagger mx-auto mt-8 grid max-w-6xl items-stretch gap-5 lg:grid-cols-2">
         <article
-          class="h-full rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
+          class="flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
         >
           <div class="text-center">
             <p
@@ -156,10 +156,25 @@ const modelSupport = [
               ))
             }
           </ul>
+
+          <div class="mt-auto flex justify-center pt-5">
+            <a
+              href="https://docs.xllm-ai.com/en/hardware/overview/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors duration-200 ease-out hover:text-[#EB2700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB2700]/35 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
+            >
+              View all supported hardware
+              <Icon
+                name="tabler:arrow-right"
+                class="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none"
+              />
+            </a>
+          </div>
         </article>
 
         <article
-          class="h-full rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
+          class="flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white/75 p-6 dark:border-slate-700 dark:bg-slate-900/50"
         >
           <div class="text-center">
             <p
@@ -179,6 +194,21 @@ const modelSupport = [
               ))
             }
           </ul>
+
+          <div class="mt-auto flex justify-center pt-5">
+            <a
+              href="https://docs.xllm-ai.com/en/supported_models/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors duration-200 ease-out hover:text-[#EB2700] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB2700]/35 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
+            >
+              View all supported models
+              <Icon
+                name="tabler:arrow-right"
+                class="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none"
+              />
+            </a>
+          </div>
         </article>
       </div>
     </div>
