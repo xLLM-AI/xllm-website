@@ -12,6 +12,9 @@ All commands are run from the root of the project, from a terminal:
 | `npm run dev`             | Starts local dev server at `localhost:4321`      |
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run check`           | Run Astro, ESLint, and Prettier checks           |
+| `npm run fix`             | Run ESLint and Prettier auto-fixes               |
+| `npm run fix:prettier`    | Format the project with Prettier                 |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
@@ -39,5 +42,6 @@ All commands are run from the root of the project, from a terminal:
 
 - Most content updates should happen in `src/pages/index.astro` and `src/navigation.ts`
 - Prefer reusing existing components instead of adding duplicated ones
+- Run `npm run fix:prettier` after code edits that affect formatting
 - Run at least one `npm run build` before submitting changes
 - For layout or visual changes, also verify in the local dev server
