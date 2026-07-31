@@ -12,10 +12,6 @@ export const headerData = {
       href: getPermalink('/team'),
     },
     {
-      text: 'Models',
-      href: getPermalink('/supported-models'),
-    },
-    {
       text: 'Publications',
       href: getPermalink('/publications'),
     },
