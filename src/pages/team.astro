@@ -1,25 +1,16 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import { frontmatter as coreTeamData } from '~/data/core-team.md';
-
-type CoreTeamMember = {
-  username: string;
-  bio: string;
-  remark: string;
-};
 
 const metadata = {
   title: 'Team',
 };
-
-const coreTeam = coreTeamData.coreTeam as CoreTeamMember[];
 ---
 
 <Layout metadata={metadata}>
   <section class="not-prose">
     <div class="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16">
       <div class="scroll-fade-stagger mx-auto max-w-4xl text-center">
-        <p class="text-base font-semibold text-heading md:text-lg dark:text-white">
+        <p class="text-xl font-semibold text-heading md:text-2xl dark:text-white">
           Thanks to all the following
           <a
             class="text-inherit underline-offset-4 hover:underline"
@@ -32,48 +23,10 @@ const coreTeam = coreTeamData.coreTeam as CoreTeamMember[];
         <a class="mt-6 inline-block" href="https://github.com/jd-opensource/xllm/graphs/contributors">
           <img
             class="mx-auto rounded-2xl"
-            src="https://contrib.rocks/image?repo=jd-opensource/xllm&columns=30&max=120"
+            src="https://contrib.rocks/image?repo=jd-opensource/xllm&columns=12&max=500"
             alt="Developers who have contributed to xLLM"
           />
         </a>
-      </div>
-
-      <div
-        class="scroll-fade card-hover mx-auto mt-10 max-w-6xl overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/75 dark:border-slate-700 dark:bg-slate-900/50"
-      >
-        <div class="px-6 pt-6 text-center md:px-8">
-          <h2 class="text-2xl font-semibold text-heading dark:text-white">xLLM Core Team</h2>
-        </div>
-        <div class="mt-6 overflow-x-auto">
-          <table class="min-w-full divide-y divide-slate-200 text-left text-sm dark:divide-slate-700">
-            <thead class="bg-slate-50/80 text-xs uppercase tracking-wide text-muted dark:bg-slate-800/60">
-              <tr>
-                <th class="whitespace-nowrap px-6 py-4 font-semibold md:px-8" scope="col">GitHub username</th>
-                <th class="min-w-72 px-6 py-4 font-semibold md:px-8" scope="col">Bio</th>
-                <th class="whitespace-nowrap px-6 py-4 font-semibold md:px-8" scope="col">Remark</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
-              {
-                coreTeam.map(({ username, bio, remark }) => (
-                  <tr class="transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/40">
-                    <td class="whitespace-nowrap px-6 py-4 font-medium md:px-8">
-                      <a
-                        class="text-[rgba(235,39,0,0.85)] underline-offset-4 hover:underline"
-                        href={`https://github.com/${username}`}
-                        target="_blank"
-                      >
-                        @{username}
-                      </a>
-                    </td>
-                    <td class="px-6 py-4 text-muted md:px-8">{bio}</td>
-                    <td class="whitespace-nowrap px-6 py-4 text-muted md:px-8">{remark}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
   </section>
