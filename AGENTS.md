@@ -46,5 +46,5 @@ All commands are run from the root of the project, from a terminal:
 - Run at least one `npm run build` before submitting changes
 - `npm run build` fetches the header GitHub star count in `src/utils/github-stars.ts`; without
   `GITHUB_TOKEN` the request may be rate limited (60 requests/hour per IP) and the count is hidden.
-  The deploy workflow passes a token and rebuilds every 6 hours.
+  The deploy workflow passes a token and rebuilds every 4 hours.
 - For layout or visual changes, also verify in the local dev server

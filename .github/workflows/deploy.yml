@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   schedule:
     # Rebuild regularly so the star count baked in at build time stays fresh.
-    - cron: '17 */6 * * *'
+    - cron: '17 */4 * * *'
 
 permissions:
   contents: read
