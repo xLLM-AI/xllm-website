@@ -1,0 +1,15 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import BlogIndex from '~/components/blog/BlogIndex.astro';
+import { fetchPosts } from '~/utils/blog';
+
+const posts = await fetchPosts();
+const metadata = {
+  title: 'Blog',
+  description: 'Technical deep dives, project updates, and releases from the xLLM team and community.',
+};
+---
+
+<Layout metadata={metadata} locale="en">
+  <BlogIndex posts={posts} locale="en" />
+</Layout>

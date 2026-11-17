@@ -3,6 +3,10 @@ import { getPermalink } from './utils/permalinks';
 export const headerData = {
   links: [
     {
+      text: 'Blog',
+      href: getPermalink('/blog'),
+    },
+    {
       text: 'Docs',
       href: 'https://docs.xllm-ai.com/en/',
       target: '_blank',
@@ -64,6 +68,10 @@ export const footerData = {
 
 export const headerDataZh = {
   links: [
+    {
+      text: '博客',
+      href: getPermalink('/zh/blog'),
+    },
     {
       text: '文档',
       href: 'https://docs.xllm-ai.com/zh/',

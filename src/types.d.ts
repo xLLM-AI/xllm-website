@@ -18,6 +18,7 @@ export interface Post {
 
   /**  */
   title: string;
+  type?: 'blog' | 'news';
   /** Optional summary of post content. */
   excerpt?: string;
   /**  */
