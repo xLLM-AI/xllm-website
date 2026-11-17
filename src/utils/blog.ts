@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Post } from '~/types';
 import { APP_BLOG } from 'astrowind:config';
 import { cleanSlug, trimSlash, BLOG_BASE, POST_PERMALINK_PATTERN, CATEGORY_BASE, TAG_BASE } from './permalinks';
+import { findImage } from './images';
 
 const generatePermalink = async ({
   id,
@@ -48,6 +49,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     publishDate: rawPublishDate = new Date(),
     updateDate: rawUpdateDate,
     title,
+    type,
     excerpt,
     image,
     tags: rawTags = [],
@@ -82,8 +84,9 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     updateDate: updateDate,
 
     title: title,
+    type,
     excerpt: excerpt,
-    image: image,
+    image: (await findImage(image)) ?? undefined,
 
     category: category,
     tags: tags,
@@ -130,7 +133,7 @@ export const blogPostsPerPage = APP_BLOG?.postsPerPage;
 
 /** */
 export const fetchPosts = async (): Promise<Array<Post>> => {
-  if (!_posts) {
+  if (import.meta.env.DEV || !_posts) {
     _posts = await load();
   }
 

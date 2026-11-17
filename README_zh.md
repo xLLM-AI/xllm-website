@@ -50,6 +50,26 @@ npm run dev
 http://localhost:4321
 ```
 
+## 发布博客文章
+
+复制 `src/content/post/_template.md`，在同目录下新建 Markdown 或 MDX 文件，文件名就是文章地址，例如 `my-post.md` → `/blog/my-post`。保留原始草稿模板，确保首篇文章发布前内容加载器也能监听目录变化。
+
+```markdown
+---
+title: '文章标题'
+publishDate: 2026-11-17T00:00:00Z
+author: 'xLLM 团队'
+type: 'blog' # blog（默认）或 news
+excerpt: '显示在文章列表中的简短摘要。'
+draft: true # 删除该字段或设为 false 即可发布
+# image: '/images/blog/my-post.png' # 可选的缩略图与封面
+---
+
+在这里撰写正文。
+```
+
+已发布文章会按日期倒序显示在 `/blog` 和 `/zh/blog`，支持搜索与技术博客／项目动态筛选。中英文页面共享文章正文，界面文字随语言切换。草稿不会出现在列表中，也不会生成文章页面。首篇文章发布前显示空状态。
+
 ## 在 VS Code / Cursor 中开发
 
 这是一个 Astro 项目。在 VS Code 或 Cursor 中开发时，建议安装 Astro 扩展，以获得正确的 `.astro` 语法高亮、诊断和编辑器支持。

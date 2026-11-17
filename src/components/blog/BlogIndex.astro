@@ -1,0 +1,256 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import PageHeader from '~/components/widgets/PageHeader.astro';
+import type { Post } from '~/types';
+import type { Locale } from '~/utils/i18n';
+import { getLocalizedPathname } from '~/utils/i18n';
+import { getPermalink } from '~/utils/permalinks';
+
+export interface Props {
+  posts: Post[];
+  locale?: Locale;
+}
+
+const { posts, locale = 'en' } = Astro.props;
+const text =
+  locale === 'zh'
+    ? {
+        title: '博客',
+        eyebrow: '技术与动态',
+        description: '来自 xLLM 团队与社区的技术探索、项目动态和版本发布。',
+        allArticles: '全部文章',
+        articleCount: `${posts.length} 篇文章`,
+        search: '搜索文章',
+        placeholder: '搜索文章…',
+        filters: ['全部', '技术博客', '项目动态'],
+        blog: '技术博客',
+        news: '项目动态',
+        emptyTitle: '文章即将发布',
+        emptyDescription: '我们将在这里分享 xLLM 的技术进展与社区动态，敬请期待。',
+        noResults: '没有找到匹配的文章，请尝试其他关键词或分类。',
+      }
+    : {
+        title: 'Blog',
+        eyebrow: 'Updates',
+        description: 'Technical deep dives, project updates, and releases from the xLLM team and community.',
+        allArticles: 'All articles',
+        articleCount: `${posts.length} ${posts.length === 1 ? 'article' : 'articles'}`,
+        search: 'Search articles',
+        placeholder: 'Search articles…',
+        filters: ['All', 'Blogs', 'News'],
+        blog: 'Blog',
+        news: 'News',
+        emptyTitle: 'Articles coming soon',
+        emptyDescription: 'Check back for technical deep dives and the latest from the xLLM community.',
+        noResults: 'No articles found. Try another search or category.',
+      };
+const filters = ['all', 'blog', 'news'];
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat(locale === 'zh' ? 'zh-CN' : 'en-US', {
+    dateStyle: 'long',
+    timeZone: 'UTC',
+  }).format(date);
+---
+
+<PageHeader eyebrow={text.eyebrow} title={text.title} description={text.description} icon="tabler:article" />
+
+<section class="not-prose" data-blog-index>
+  <div class="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <h2 class="text-lg font-semibold tracking-tight text-heading dark:text-white">{text.allArticles}</h2>
+          <p class="text-sm text-muted">{text.articleCount}</p>
+        </div>
+        <div class="relative hidden shrink-0 md:w-72" data-blog-controls>
+          <Icon name="tabler:search" class="pointer-events-none absolute left-3.5 top-3.5 h-5 w-5 text-muted" />
+          <input
+            type="search"
+            aria-label={text.search}
+            placeholder={text.placeholder}
+            class="w-full rounded-xl border border-neutral-200/80 bg-white/60 py-3 pl-11 pr-4 text-sm text-default placeholder:text-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-neutral-800 dark:bg-white/[0.02]"
+            data-blog-search
+          />
+        </div>
+      </div>
+
+      <div
+        class="mb-5 hidden flex-wrap gap-2"
+        role="group"
+        aria-label={locale === 'zh' ? '文章分类' : 'Article categories'}
+        data-blog-controls
+      >
+        {
+          filters.map((filter, index) => (
+            <button
+              type="button"
+              class="blog-filter rounded-xl border px-4 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              aria-pressed={index === 0 ? 'true' : 'false'}
+              data-blog-filter={filter}
+            >
+              {text.filters[index]}
+            </button>
+          ))
+        }
+      </div>
+
+      {
+        posts.length ? (
+          <ol
+            class="scroll-fade divide-y divide-neutral-200/80 overflow-hidden rounded-3xl border border-neutral-200/80 bg-white/60 dark:divide-neutral-800 dark:border-neutral-800 dark:bg-white/[0.02]"
+            aria-label={locale === 'zh' ? '文章列表' : 'Articles'}
+            data-blog-list
+          >
+            {posts.map((post) => (
+              <li
+                class="group transition-colors hover:bg-white/70 dark:hover:bg-white/[0.03]"
+                data-blog-post
+                data-post-type={post.type ?? 'blog'}
+                data-search={[
+                  post.title,
+                  post.excerpt,
+                  post.author,
+                  post.category?.title,
+                  ...(post.tags?.map((tag) => tag.title) ?? []),
+                ]
+                  .filter(Boolean)
+                  .join(' ')
+                  .toLocaleLowerCase()}
+              >
+                <article>
+                  <a
+                    href={getPermalink(getLocalizedPathname(`/${post.permalink}`, locale))}
+                    class="grid gap-5 px-5 py-5 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary sm:grid-cols-[10rem_1fr] sm:items-center sm:gap-6 md:px-7 md:py-6"
+                  >
+                    <div class="flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl bg-white/70 p-3 ring-1 ring-black/[0.04] dark:bg-white/[0.03] dark:ring-white/10">
+                      {post.image ? (
+                        <Image
+                          src={post.image}
+                          alt=""
+                          width={320}
+                          height={200}
+                          widths={[160, 320, 640]}
+                          sizes="(max-width: 639px) 100vw, 200px"
+                          class="h-full w-full object-contain"
+                        />
+                      ) : (
+                        <img
+                          src="/images/logo-wordmark.png"
+                          alt=""
+                          width="1200"
+                          height="374"
+                          loading="lazy"
+                          class="w-3/4"
+                        />
+                      )}
+                    </div>
+                    <div class="min-w-0">
+                      <span class="inline-flex rounded-lg bg-[rgba(235,39,0,0.08)] px-2.5 py-1 text-xs font-semibold text-accent dark:bg-[rgba(235,39,0,0.14)]">
+                        {post.type === 'news' ? text.news : text.blog}
+                      </span>
+                      <h3 class="mt-3 text-base font-semibold leading-7 tracking-tight text-heading transition-colors group-hover:text-accent md:text-lg dark:text-white">
+                        {post.title}
+                      </h3>
+                      {post.excerpt && <p class="mt-3 line-clamp-2 text-sm leading-6 text-muted">{post.excerpt}</p>}
+                      <div class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs leading-5 text-muted">
+                        {post.author && <span>{post.author}</span>}
+                        <time datetime={post.publishDate.toISOString()}>{formatDate(post.publishDate)}</time>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <div class="scroll-fade rounded-3xl border border-neutral-200/80 bg-white/60 px-6 py-16 text-center dark:border-neutral-800 dark:bg-white/[0.02]">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EB2700]/[0.07] text-accent ring-1 ring-[#EB2700]/10 dark:bg-[#EB2700]/10">
+              <Icon name="tabler:article" class="h-6 w-6" />
+            </span>
+            <h3 class="mt-5 text-xl font-semibold tracking-tight text-heading dark:text-white">{text.emptyTitle}</h3>
+            <p class="mx-auto mt-3 max-w-md text-sm leading-6 text-muted">{text.emptyDescription}</p>
+          </div>
+        )
+      }
+
+      <p
+        class="mt-5 hidden rounded-3xl border border-neutral-200/80 bg-white/60 px-6 py-16 text-center text-sm text-muted dark:border-neutral-800 dark:bg-white/[0.02]"
+        role="status"
+        data-blog-no-results
+      >
+        {text.noResults}
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initBlogIndex() {
+    const root = document.querySelector<HTMLElement>('[data-blog-index]');
+    if (!root || root.dataset.initialized) return;
+    root.dataset.initialized = 'true';
+
+    const search = root.querySelector<HTMLInputElement>('[data-blog-search]');
+    const buttons = root.querySelectorAll<HTMLButtonElement>('[data-blog-filter]');
+    const posts = root.querySelectorAll<HTMLElement>('[data-blog-post]');
+    const list = root.querySelector<HTMLOListElement>('[data-blog-list]');
+    const noResults = root.querySelector<HTMLElement>('[data-blog-no-results]');
+    let activeFilter = 'all';
+
+    root.querySelectorAll<HTMLElement>('[data-blog-controls]').forEach((control) => {
+      control.classList.remove('hidden');
+      if (control.getAttribute('role') === 'group') control.classList.add('flex');
+    });
+
+    function updatePosts() {
+      const query = search?.value.trim().toLocaleLowerCase() ?? '';
+      let visible = 0;
+      posts.forEach((post) => {
+        const matches =
+          (activeFilter === 'all' || post.dataset.postType === activeFilter) &&
+          (!query || post.dataset.search?.includes(query));
+        post.hidden = !matches;
+        if (matches) visible++;
+      });
+      if (list) list.hidden = visible === 0;
+      noResults?.classList.toggle('hidden', posts.length === 0 || visible > 0);
+    }
+
+    search?.addEventListener('input', updatePosts);
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.blogFilter ?? 'all';
+        buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        updatePosts();
+      });
+    });
+  }
+
+  initBlogIndex();
+  document.addEventListener('astro:page-load', initBlogIndex);
+</script>
+
+<style>
+  .blog-filter {
+    border-color: color-mix(in srgb, var(--aw-color-text-default) 12%, transparent);
+    color: var(--aw-color-text-muted);
+  }
+
+  .blog-filter:hover {
+    background-color: rgb(235 39 0 / 6%);
+    border-color: rgb(235 39 0 / 26%);
+    color: var(--aw-color-accent);
+  }
+
+  .blog-filter[aria-pressed='true'] {
+    background-color: rgb(235 39 0 / 8%);
+    border-color: rgb(235 39 0 / 26%);
+    color: var(--aw-color-accent);
+  }
+
+  :global(.dark) .blog-filter[aria-pressed='true'] {
+    background-color: rgb(235 39 0 / 14%);
+    border-color: rgb(255 116 89 / 40%);
+  }
+</style>
